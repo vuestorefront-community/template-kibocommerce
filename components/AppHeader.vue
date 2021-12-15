@@ -3,7 +3,7 @@
     <SfHeader
       class="sf-header--has-mobile-search"
       :class="{ 'header-on-top': isSearchOpen }"
-      :isNavVisible = "isMobileMenuOpen"
+      :isNavVisible="isMobileMenuOpen"
     >
       <!-- TODO: add mobile view buttons after SFUI team PR -->
       <template #logo>
@@ -81,7 +81,10 @@
             <SfButton
               v-else
               class="sf-search-bar__button sf-button--pure"
-              @click="isSearchOpen ? (isSearchOpen = false) : (isSearchOpen = true)">
+              @click="
+                isSearchOpen ? (isSearchOpen = false) : (isSearchOpen = true)
+              "
+            >
               <span class="sf-search-bar__icon">
                 <SfIcon color="var(--c-text)" size="20px" icon="search" />
               </span>
@@ -123,7 +126,7 @@ import {
   useSearchSuggestions,
   wishlistGetters
 } from '@vue-storefront/kibocommerce';
-import { computed, ref, onBeforeUnmount, watch } from '@vue/composition-api';
+import { computed, ref, onBeforeUnmount, watch } from '@nuxtjs/composition-api';
 import { onSSR } from '@vue-storefront/core';
 import { useUiHelpers } from '~/composables';
 import LocaleSelector from './LocaleSelector';
@@ -156,7 +159,8 @@ export default {
     const {
       toggleCartSidebar,
       toggleWishlistSidebar,
-      toggleLoginModal, isMobileMenuOpen
+      toggleLoginModal,
+      isMobileMenuOpen
     } = useUiState();
     const { setTermForUrl, getFacetsFromURL, getCatLink } = useUiHelpers();
     const { load: loadUser, isAuthenticated } = useUser();
@@ -261,6 +265,11 @@ export default {
         }
       }
     );
+    watch(isAuthenticated, (isAuthenticated) => {
+      if (isAuthenticated) {
+        loadWishlist();
+      }
+    });
 
     const removeSearchResults = () => {
       result.value = null;

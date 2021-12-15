@@ -1,5 +1,32 @@
-import { Logger } from '@vue-storefront/core';
+const canEnterPayment = (cart) =>
+  cart && cart.shippingInfo && cart.shippingAddress;
 
-export default () => {
-  Logger.error('Please implement vendor-specific checkout.js middleware in the \'middleware\' directory to block access to checkout steps when customer did not yet complete previous steps');
+const canEnterReview = (cart) => cart && Boolean(cart.billingAddress);
+
+export default async ({ app, $vsf }) => {
+  const currentPath = app.context.route.fullPath.split('/checkout/')[1];
+
+  if (!currentPath) return;
+
+  const { data } = await $vsf.$kibo.api.getCart();
+
+  const { activeCart } = data?.currentCart;
+
+  switch (currentPath) {
+    case 'shipping':
+      if (!activeCart) {
+        app.context.redirect('/');
+      }
+      break;
+    case 'billing':
+      if (!canEnterPayment(activeCart)) {
+        app.context.redirect('/');
+      }
+      break;
+    case 'payment':
+      if (!canEnterReview(activeCart)) {
+        app.context.redirect('/');
+      }
+      break;
+  }
 };
