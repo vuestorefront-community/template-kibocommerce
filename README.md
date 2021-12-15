@@ -1,51 +1,52 @@
-# Vue Storefront 2
+# Vue Storefront 2 Theme Integeration with Kibo Commerce
 
-## Build Setup
+### Requirements:
+- NodeJS v14 or later
+- KiboCommerce Account
+### Steps
+1. Fork the repo
+2. Clone your fork of the repo
+    ```
+    example:
+    git clone https://github.com/vuestorefront/template-kibocommerce.git
+    cd kibocommerce
+    ```
+3. Checkout develop branch `git checkout develop`
+4. Run `yarn` to install dependencies
+5. Define a store running environment by adding a STORE_ENV to your running project or execute the code
+    ```$ echo "STORE_ENV=dev" >> .env```
+6. Copy config/example.json to an environment named config and update GraphQL Endpoint
+    ```
+    $ cp ./config/example.json ./config/dev.json
+    ```
+7. Update clientId and sharedSecret with your respective Application Client ID and Shared secret found in your Kibo Commerce Developer Console.  Visit [Kibo documentation](https://apidocs.kibong-perf.com/?spec=graphql#auth) for more details on API authentication
+8. Update apiHost to point at your Kibo Commerce site.
+9. Run `yarn dev` to run theme with hot reload at localhost:3000. You can find other commands in `package.json`
+10. For production build:
 
 ```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
 
 # build for production and launch server
 $ yarn build
 $ yarn start
-```
 
+```
 For detailed explanation on how things work, check out the [documentation](https://docs.vuestorefront.io/v2/).
 
-## Special Directories
+## Resources
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+- [Vue Storefront Documentation](https://docs.vuestorefront.io/v2/)
+- [kibocommerce integration Documentation](https://docs.vuestorefront.io/kibocommerce)
+- [Community Chat](https://discord.vuestorefront.io)
 
-### `assets`
+## Support
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+If you have any questions about this integration we will be happy to answer them on `kibocommerce` channel on [our Discord](discord.vuestorefront.io).
 
-### `components`
+## Contributors ✨
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 
-### `layouts`
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
