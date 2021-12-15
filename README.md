@@ -1,36 +1,53 @@
-# Vue Storefront 2 Theme Integeration with Kibo Commerce
+# Kibo Commerce Vue Storefront 2 Layer0 Demo
+> View the running Demo [Here](https://kibo-commerce-vuestorefront-layer0-demo-default.layer0.link/)
 
-### Requirements:
+## Requirements:
 - NodeJS v14 or later
 - KiboCommerce Account
-### Steps
-1. Fork the repo
-2. Clone your fork of the repo
-    ```
-    example:
-    git clone https://github.com/vuestorefront/template-kibocommerce.git
-    cd kibocommerce
-    ```
-3. Checkout develop branch `git checkout develop`
-4. Run `yarn` to install dependencies
-5. Define a store running environment by adding a STORE_ENV to your running project or execute the code
-    ```$ echo "STORE_ENV=dev" >> .env```
-6. Copy config/example.json to an environment named config and update GraphQL Endpoint
-    ```
-    $ cp ./config/example.json ./config/dev.json
-    ```
-7. Update clientId and sharedSecret with your respective Application Client ID and Shared secret found in your Kibo Commerce Developer Console.  Visit [Kibo documentation](https://apidocs.kibong-perf.com/?spec=graphql#auth) for more details on API authentication
-8. Update apiHost to point at your Kibo Commerce site.
-9. Run `yarn dev` to run theme with hot reload at localhost:3000. You can find other commands in `package.json`
-10. For production build:
+- Layer0 Account
 
-```bash
 
-# build for production and launch server
-$ yarn build
-$ yarn start
 
-```
+
+## Create your Layer0 Account
+
+
+> To deploy your site to Layer0, you must first sign up for an account. [Sign up here for free.](https://app.layer0.co/signup?sgId=0f24fde8-77ed-40d0-8bc8-cbed15853a5e)
+
+---
+
+
+## Build and Deploy Steps
+* Clone the repo
+    ```
+    $ git clone https://github.com/KiboSoftware/vuestorefront-layer0-demo.git kibo-vuestorefront-layer0-demo
+    $ cd kibo-vuestorefront-layer0-demo
+    ```   
+* Run `yarn` to install dependencies
+    ```
+    $ yarn
+    ```
+* Install the [layer0 cli](https://docs.layer0.co/guides/cli)
+    ```
+    $ yarn global add @layer0/cli
+    ```
+* Deploy to Layer0
+    ```
+    $ layer0 deploy
+    ```
+* Add the Kibo Environmental Variabls to your [Layer0 Environment](https://docs.layer0.co/guides/environments#section_environment_variables)
+    | Key | Example | Description |
+    ------|---------|-----------
+    KIBO_ACCESS_TOKEN_URL | https://home.mozu.com/api/platform/applications/authtickets/oauth | Uri to the Kibo Auth Service
+    KIBO_API_HOST | https://txxx-sxxx.sandbox.mozu.com | Uri to Your Store
+    KIBO_CLIENT_ID | someaccount.sample_app.1.0.0.Release | id of your app to authenticate with
+    KIBO_SHARED_SECRET | UUID | auth secrete.
+
+    *more info on aps @ [kibo dev docs](https://docs.kibocommerce.com/116703/651396-application-asset-management#create-an-application-5)*
+* Update clientId and sharedSecret with your respective Application Client ID and Shared secret found in your Kibo Commerce Developer Console.  Visit [Kibo documentation](https://apidocs.kibong-perf.com/?spec=graphql#auth) for more details on API authentication
+
+
+
 For detailed explanation on how things work, check out the [documentation](https://docs.vuestorefront.io/v2/).
 
 ## Resources
